@@ -14,6 +14,7 @@ step_hash = { :d => lambda { |date| date.next_day(step)},
               :m => lambda { |date| date.next_month(step)},
               :y => lambda { |date| date.next_year(step)} }
 
-number_of_steps.times.with_index { |i|
+number_of_steps.times.with_index do |i|
   date = step_hash[unit].call(date)
-  puts "step #{i + 1}: date - #{date}" }
+  puts "step #{i + 1}: date - #{date}" 
+end
