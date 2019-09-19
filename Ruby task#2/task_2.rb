@@ -2,49 +2,30 @@
 
 # DO NOT MODIFY anything outside the below function
 def twins(a, b)
-  even_a = []
-  even_b = []
-  odd_a = []
-  odd_b = []
-  i = 0
-  a.each_char {|_| i % 2 == 0 ? even_a << a[i] : odd_a << a[i]
-    i = i + 1  } 
-  i = 0
-  b.each_char {|_| i % 2 == 0 ? even_b << b[i] : odd_b << b[i] 
-    i = i + 1  } 
-
-  sort_a_even = even_a.sort
-  sort_b_even = even_b.sort
-  sort_a_odd = odd_a.sort
-  sort_b_odd = odd_b.sort
-
-  even_equal = []
-  sort_a_even.each_index {|i| 
-    if sort_a_even[i] == sort_b_even[i] 
-      even_equal << true 
-    else
-      even_equal << false
-    end }
-
-  bool_ans = even_equal.all?
-  string_ans = ''
-  if bool_ans
-    odd_equal = []
-    sort_a_odd.each_index {|i| 
-      if sort_a_odd[i] == sort_b_odd[i] 
-        odd_equal << true 
-      else
-        odd_equal << false
-      end }
-    bool_ans = odd_equal.all?
-    if bool_ans
-      string_ans = 'Yes'
-    else
-      string_ans = 'No'
+  a = a.bytes
+  b = b.bytes
+  even_a_hash = Hash.new { |hash,key| hash[key] = 0 }
+  even_b_hash = Hash.new { |hash,key| hash[key] = 0 }
+  odd_a_hash = Hash.new { |hash,key| hash[key] = 0 }
+  odd_b_hash = Hash.new { |hash,key| hash[key] = 0 }
+  a.each_with_index {|_, i| i % 2 == 0 ? even_a_hash[a[i]] += 1 : odd_a_hash[a[i]] += 1} 
+  b.each_with_index {|_, i| i % 2 == 0 ? even_b_hash[b[i]] += 1 : odd_b_hash[b[i]] += 1} 
+  answer = true
+  odd_a_hash.each_key do |key| 
+    if odd_a_hash[key] != odd_b_hash[key] 
+      answer = false
     end
+  end
+  even_a_hash.each_key do |key|
+    if even_a_hash[key] != even_b_hash[key]
+      answer = false 
+    end
+  end
+  if answer
+    string_ans = 'Yes'
   else
     string_ans = 'No'
-  end  
+  end
   string_ans
 end
 
