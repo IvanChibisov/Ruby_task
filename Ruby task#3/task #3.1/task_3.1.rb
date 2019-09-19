@@ -1,11 +1,11 @@
 require 'date'
-puts "Enter the date in format yyyy-mm-dd"
+puts 'Enter the date in format yyyy-mm-dd'
 date = gets.chomp
-puts "Chose the unit. d - day, m - month, y - year"
+puts 'Chose the unit. d - day, m - month, y - year'
 unit = gets.chomp.to_sym
-puts "Enter step"
+puts 'Enter step'
 step = gets.chomp.to_i
-puts "Enter number of step"
+puts 'Enter number of step'
 number_of_steps = gets.chomp.to_i
 
 date = Date.parse date
