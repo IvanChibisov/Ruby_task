@@ -15,10 +15,12 @@ def twins(a, b)
       break
     end
   end
-  even_a_hash.each_key do |key|
-    if even_a_hash[key] != even_b_hash[key]
-      answer = false
-      break 
+  if answer
+    even_a_hash.each_key do |key|
+      if even_a_hash[key] != even_b_hash[key]
+        answer = false
+        break 
+      end
     end
   end
   answer ? 'Yes' : 'No'
