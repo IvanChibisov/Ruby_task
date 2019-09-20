@@ -2,8 +2,6 @@
 
 # DO NOT MODIFY anything outside the below function
 def twins(a, b)
-  a = a.bytes
-  b = b.bytes
   even_a_hash = Hash.new { |hash,key| hash[key] = 0 }
   even_b_hash = Hash.new { |hash,key| hash[key] = 0 }
   odd_a_hash = Hash.new { |hash,key| hash[key] = 0 }
@@ -14,19 +12,16 @@ def twins(a, b)
   odd_a_hash.each_key do |key| 
     if odd_a_hash[key] != odd_b_hash[key] 
       answer = false
+      break
     end
   end
   even_a_hash.each_key do |key|
     if even_a_hash[key] != even_b_hash[key]
-      answer = false 
+      answer = false
+      break 
     end
   end
-  if answer
-    string_ans = 'Yes'
-  else
-    string_ans = 'No'
-  end
-  string_ans
+  answer ? 'Yes' : 'No'
 end
 
 
